@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
-import {  View, Text, } from 'react-native';
+import { View, Text, AsyncStorage } from 'react-native';
+import { connect } from 'react-redux';
 
-export default class AuthScreen extends Component {
+import * as actions from '../actions';
+
+class AuthScreen extends Component {
+  componentDidMount() {
+    console.log('Mounted')
+    this.props.facebookLogin();
+    // AsyncStorage.removeItem('fb_token');
+  }
+
+  componentWillUnMount() {
+    console.log('Unmounted')
+  }
+
   render() {
     return (
       <View>
-        <Text> AuthScreen </Text>
-        <Text> AuthScreen </Text>
-        <Text> AuthScreen </Text>
         <Text> AuthScreen </Text>
       </View>
     );
   }
 }
+
+export default connect(null, actions)(AuthScreen);

@@ -11,6 +11,8 @@ import DeckScreen from './screens/DeckScreen';
 import ReviewScreen from './screens/ReviewScreen';
 import SettingsScreen from './screens/SettingsScreen';
 
+console.disableYellowBox = true;
+
 export default class App extends React.Component {
 
   render() {
@@ -30,7 +32,11 @@ export default class App extends React.Component {
         })
       }
       }, {
-      tabBarPosition: 'bottom'
+      navigationOptions: {
+        tabBarVisible: false
+      },
+      tabBarPosition: 'bottom',
+      lazy: true
     });
 
     return (
@@ -51,4 +57,3 @@ const styles = StyleSheet.create({
   },
 });
 
-console.disableYellowBox = true;

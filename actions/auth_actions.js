@@ -7,7 +7,6 @@ import {
   FACEBOOK_LOGOUT
 } from './types';
 
-
 // Login to Facebook
 export const facebookLogIn = () => async dispatch => {
   let token = await AsyncStorage.getItem('fb_token');
@@ -37,15 +36,3 @@ export const facebookLogOut = () => {
   AsyncStorage.removeItem('fb_token');
   return dispatch({ type: FACEBOOK_LOGOUT });
 }
-
-// // Redux thunk
-// export const facebookLogin = () => {
-//   return function(dispatch) {
-//     let token = await Async.Storage.getItem('fb_token');
-//     if (token) {
-
-//     } else {
-
-//     }
-//   }
-// }

@@ -16,15 +16,20 @@ class DeckScreen extends Component {
   }
 
   renderCard(job) {
+    const {
+      longitude, latitude, jobtitle,
+      company, formattedRelativeTime
+    } = job
+
     const initialRegion = {
-      longitude: job.longitude,
-      latitude: job.latitude,
+      longitude,
+      latitude,
       latitudeDelta: 0.045,
       longitudeDelta: 0.02
     };
 
     return (
-      <Card title={job.jobtitle}>
+      <Card title={jobtitle}>
         <View style={{ height: 300 }}>
           <MapView
             scrollEnabled={false}
@@ -35,8 +40,8 @@ class DeckScreen extends Component {
           </MapView>
         </View>
         <View style={styles.detailWrapper}>
-          <Text>{job.company}</Text>
-          <Text>{job.formattedRelativeTime}</Text>
+          <Text>{company}</Text>
+          <Text>{formattedRelativeTime}</Text>
         </View>
         <Text>
           {job.snippet.replace(/<\/?b>/g, "")}

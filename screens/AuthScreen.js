@@ -7,10 +7,8 @@ import * as actions from '../actions';
 
 class AuthScreen extends Component {
   componentDidMount() {
-    AsyncStorage.removeItem('fb_token'); // Remove Token to test state
-    console.log('Mounted')
+    // AsyncStorage.removeItem('fb_token'); // Remove Token to test state
     this.props.facebookLogIn();
-
     this.onAuthComplete(this.props)
   }
 

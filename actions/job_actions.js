@@ -3,6 +3,7 @@ import reverseGeocode from 'latlng-to-zip';
 import qs from 'qs';
 
 import {
+  CLEAR_LIKED_JOBS,
   FETCH_JOBS,
   LIKE_JOB
 } from './types';
@@ -41,4 +42,8 @@ export const likeJob = (job) => {
     payload: job,
     type: LIKE_JOB
   }
+}
+
+export const clearLikedJobs = () => {
+  return { type: CLEAR_LIKED_JOBS }
 }

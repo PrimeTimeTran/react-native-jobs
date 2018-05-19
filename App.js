@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
 
 import store from './store';
@@ -13,23 +13,23 @@ import SettingsScreen from './screens/SettingsScreen';
 
 console.disableYellowBox = true;
 
-export default class App extends React.Component {
-
+class App extends React.Component {
   render() {
-    const MainNavigator = TabNavigator({
+    const MainNavigator = createBottomTabNavigator({
       welcome: { screen: WelcomeScreen },
       auth: { screen: AuthScreen },
       main: {
-        screen: TabNavigator({
+        screen: createBottomTabNavigator({
           map: { screen: MapScreen },
           deck: { screen: DeckScreen },
           review: {
-            screen: StackNavigator({
+            screen: createStackNavigator({
               review: { screen: ReviewScreen },
               settings: { screen: SettingsScreen }
             })
           }
-        })
+        }),
+
       }
       }, {
       navigationOptions: {
@@ -57,3 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
+export default App;

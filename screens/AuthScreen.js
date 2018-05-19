@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
+import { Button } from 'react-native-elements';
 
 import * as actions from '../actions';
 
@@ -16,12 +17,29 @@ class AuthScreen extends Component {
   }
 
   render() {
+    if (!this.props.token) {
+      return (
+        <View>
+          <Button
+            title='Sign Out'
+            onPress={() => this.props.facebookLogOut();}
+          />
+        </View>
+      );
+    }
     return (
       <View>
-        <Text> AuthScreen </Text>
+        <Button
+          title='Login With Facebook'
+          onPress={() => this.props.facebookLogIn()}
+        />
       </View>
-    );
+    )
   }
 }
 
-export default connect(null, actions)(AuthScreen);
+function mapStateToProps({ auth }) {
+  return { token: auth.token };
+}
+
+export default connect(mapStateToProps, actions)(AuthScreen);

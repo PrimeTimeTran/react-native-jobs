@@ -3,10 +3,13 @@ import { Facebook } from 'expo';
 
 import {
   FACEBOOK_LOGIN_SUCCESS,
-  FACEBOOK_LOGIN_FAIL
+  FACEBOOK_LOGIN_FAIL,
+  FACEBOOK_LOGOUT
 } from './types';
 
-export const facebookLogin = () => async dispatch => {
+
+// Login to Facebook
+export const facebookLogIn = () => async dispatch => {
   let token = await AsyncStorage.getItem('fb_token');
 
   if (token) {
@@ -28,6 +31,12 @@ const doFacebookLogin = async dispatch => {
   await AsyncStorage.setItem('fb_token', token);
   dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
 };
+
+// Logout of Facebook
+export const facebookLogOut = () => {
+  AsyncStorage.removeItem('fb_token');
+  return dispatch({ type: FACEBOOK_LOGOUT });
+}
 
 // // Redux thunk
 // export const facebookLogin = () => {

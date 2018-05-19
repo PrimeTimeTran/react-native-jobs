@@ -8,12 +8,25 @@ import * as actions from '../actions';
 class AuthScreen extends Component {
   componentDidMount() {
     console.log('Mounted')
-    this.props.facebookLogin();
-    // AsyncStorage.removeItem('fb_token');
+    this.props.facebookLogIn();
+    // AsyncStorage.removeItem('fb_token'); // Remove Token to test state
+
+    this.onAuthComplete(this.props)
   }
 
   componentWillUnMount() {
     console.log('Unmounted')
+  }
+
+
+  onAuthComplete(props) {
+    if (props.token) {
+      this.props.navigation.navigate('map');
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.onAuthComplete(nextProps);
   }
 
   render() {
@@ -22,7 +35,7 @@ class AuthScreen extends Component {
         <View>
           <Button
             title='Sign Out'
-            onPress={() => this.props.facebookLogOut();}
+            onPress={() => this.props.facebookLogOut()}
           />
         </View>
       );

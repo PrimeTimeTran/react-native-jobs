@@ -6,7 +6,8 @@ import {
   Text,
   View,
   LayoutAnimation,
-  UIManager
+  UIManager,
+  Platform
 } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -20,7 +21,8 @@ class Swipe extends Component {
     },
     onSwipeLeft: (item) => {
       console.log('Swped Left!')
-    }
+    },
+    keyProp: 'id'
   }
 
   constructor(props) {
@@ -91,7 +93,7 @@ class Swipe extends Component {
       return this.props.renderNoMoreCards();
     }
 
-    return this.props.data.map((item, idx) => {
+    const deck = this.props.data.map((item, idx) => {
       if (idx < this.state.index) { return null }
 
       if (idx === this.state.index) {
@@ -108,13 +110,14 @@ class Swipe extends Component {
 
       return (
         <Animated.View
-          key={item.id}
-          style={[styles.cardStyle, { top: 10 * ( idx - this.state.index) }]
+          key={item[this.props.keyProp]}
+          style={[styles.cardStyle, { top: 10 * ( idx - this.state.index), zIndex: -idx }]
         }>
           {this.props.renderCard(item)}
         </Animated.View>
       );
-    }).reverse()
+    })
+    return Platform.OS === 'android' ? deck : deck.reverse();
   }
 
   resetPosition() {

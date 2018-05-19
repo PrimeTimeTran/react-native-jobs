@@ -3,7 +3,8 @@ import reverseGeocode from 'latlng-to-zip';
 import qs from 'qs';
 
 import {
-  FETCH_JOBS
+  FETCH_JOBS,
+  LIKE_JOB
 } from './types';
 // Job Links
 // https://jobs.github.com/positions.json?lat=37.3229978&long=-122.0321823
@@ -35,3 +36,9 @@ export const fetchJobs = (region, callback) => async (dispatch) => {
   }
 }
 
+export const likeJob = (job) => {
+  return {
+    payload: job,
+    type: LIKE_JOB
+  }
+}

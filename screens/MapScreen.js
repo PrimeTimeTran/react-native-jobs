@@ -17,6 +17,7 @@ class MapScreen extends Component {
   }
 
   componentDidMount() {
+    // AsyncStorage.removeItem('fb_token'); // Remove Token to test state
     this.setState({ mapLoaded: true });
   }
 

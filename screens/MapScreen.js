@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import { Button } from 'react-native-elements';
 import { MapView } from 'expo';
-import actions from '../actions';
+import * as actions from '../actions';
 import { connect } from 'react-redux';
 
 class MapScreen extends Component {
@@ -14,8 +14,6 @@ class MapScreen extends Component {
       longitudeDelta: 0.04,
       latitudeDelta: 0.09
     }
-    // https://jobs.github.com/positions.json?lat=37.3229978&long=-122.0321823
-    // http://api.indeed.com/ads/apisearch?publisher=4201738803816157&q=java&l=austin%2C+tx&v=2&format=json
   }
 
   componentDidMount() {
@@ -27,7 +25,9 @@ class MapScreen extends Component {
   }
 
   onButtonPress = () => {
-    this.props.fetchJobs(this.state.region);
+    this.props.fetchJobs(this.state.region, () => {
+      this.props.navigation.navigate('deck');
+    });
   }
 
   render() {

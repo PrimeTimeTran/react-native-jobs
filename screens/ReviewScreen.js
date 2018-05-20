@@ -10,13 +10,13 @@ class ReviewScreen extends Component {
     headerRight: (
       <Button
         title='Settings'
-        onPress={() => navigation.navigate('settings')}
+        onPress={() => navigation.navigate('Settings')}
         backgroundColor='#ffffff'
         color='blue'
       />
     ),
     headerStyle: {
-      marginTop: Platform.OS === 'android' ? 24 : 0;
+      marginTop: Platform.OS === 'android' ? 24 : 0
     }
   });
 

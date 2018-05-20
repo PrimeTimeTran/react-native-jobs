@@ -12,24 +12,46 @@ import ReviewScreen from '../screens/ReviewScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
 
-const MainStack = createBottomTabNavigator(
+const ReviewStack = createStackNavigator({
+  review: ReviewScreen,
+  Settings: SettingsScreen
+})
+
+const MainTabNavigator = createBottomTabNavigator(
   {
-    welcome: WelcomeScreen,
-    auth: AuthScreen,
-    main: {
-      screen: createBottomTabNavigator(
-        {
-          map: MapScreen,
-          deck: DeckScreen,
-          review: {
-            screen: createStackNavigator({
-              review: ReviewScreen,
-              settings: SettingsScreen
-            })
-          }
+    Map: MapScreen,
+    Deck: DeckScreen,
+    Review: ReviewStack
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === 'Map') {
+          iconName = `ios-information-circle${focused ? '' : '-outline'}`;
+        } else if (routeName === 'Deck') {
+          iconName = `ios-options${focused ? '' : '-outline'}`;
+        } else if ( routeName === 'Review') {
+          iconName = `ios-heart${focused ? '' : '-outline'}`;
         }
-      )
-    }
+        return <Ionicons name={iconName} size={25} color={tintColor} />;
+      },
+      tabBarOptions: {
+        activeTintColor: 'tomato',
+        inactiveTintColor: 'gray',
+        labelStyle: { fontSize: 12 },
+        tabBarPosition: 'bottom'
+      }
+    })
+  }
+)
+
+const AppStack = createBottomTabNavigator(
+  {
+    Welcome: WelcomeScreen,
+    Auth: AuthScreen,
+    Main: MainTabNavigator
   },
   {
     lazy: true,
@@ -37,4 +59,4 @@ const MainStack = createBottomTabNavigator(
   }
 );
 
-export default MainStack
+export default AppStack

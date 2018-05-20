@@ -8,18 +8,11 @@ import * as actions from '../actions';
 import Swipe from '../components/Swipe';
 
 class DeckScreen extends Component {
-  static navigationOptions = {
-    title: 'Jobs',
-    tabBarIcon: ({ tintColor }) => {
-      return <Icon name='description' size={30} color={tintColor} />
-    }
-  }
-
   renderCard(job) {
     const {
       longitude, latitude, jobtitle,
       company, formattedRelativeTime
-    } = job
+    } = job;
 
     const initialRegion = {
       longitude,
@@ -59,7 +52,7 @@ class DeckScreen extends Component {
           backgroundColor="#03A9F4"
           icon={{ name: 'my-location' }}
           large
-          onPress={() => this.props.navigation.navigate('map') }
+          onPress={() => this.props.navigation.navigate('Map') }
           title='Back To Map'
         />
       </Card>

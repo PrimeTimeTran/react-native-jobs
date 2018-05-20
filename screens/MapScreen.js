@@ -16,8 +16,8 @@ class MapScreen extends Component {
   state = {
     mapLoaded: false,
     region: {
-      longitude: -122,
-      latitude: 37,
+      longitude: -122.4194,
+      latitude: 37.7749,
       longitudeDelta: 0.04,
       latitudeDelta: 0.09
     }
@@ -34,7 +34,8 @@ class MapScreen extends Component {
 
   onButtonPress = () => {
     this.props.fetchJobs(this.state.region, () => {
-      this.props.navigation.navigate('deck');
+      console.log('Should change: ')
+      this.props.navigation.navigate('Deck');
     });
   }
 

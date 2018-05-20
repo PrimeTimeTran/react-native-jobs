@@ -75,7 +75,7 @@ const styles = {
     justifyContent: 'space-around'
   },
   italics: {
-    fontSize: 'italic'
+    fontStyle: 'italic'
   }
 }
 
